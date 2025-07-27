@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { RxCross2, RxCrossCircled } from "react-icons/rx";
 import {LoadingCirlce, LoadingDots} from "./Loading"
+import toast from "react-hot-toast";
 
 
 
