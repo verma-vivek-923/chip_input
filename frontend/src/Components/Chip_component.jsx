@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { RxCross2, RxCrossCircled } from "react-icons/rx";
 import { LoadingCirlce, LoadingDots } from "./Loading";
 import toast from "react-hot-toast";
+import { motion } from "motion/react";
 
 const Chip_component = () => {
   const [chipText, setChipText] = useState("");
@@ -55,15 +56,15 @@ const Chip_component = () => {
       );
 
       setAllChips(allChips.filter((chip) => chip._id !== id));
-      toast.success("CHip Deleted",{
-        style:{
-            background:"#333",
-            color:"#fff"
+      toast.success("CHip Deleted", {
+        style: {
+          background: "#333",
+          color: "#fff",
         },
         iconTheme: {
-    primary: '#fff',
-    secondary: '#333',
-  },
+          primary: "#fff",
+          secondary: "#333",
+        },
       });
       setloadingDeleteIdId(null);
     } catch (error) {
@@ -75,12 +76,24 @@ const Chip_component = () => {
 
   return (
     <div className="min-h-screen w-screen bg-[#101114] flex flex-col justify-center items-center">
-      <h2 className="text-[#00ffc4] text-4xl mt-24 md:mt-[-200px] md:text-6xl font-bold">
+      <motion.h2
+        initial={{ y: "-100%" }}
+        animate={{ y: "0" }}
+        transition={{ duration: 0.3 }}
+        className="text-[#00ffc4] text-4xl mt-24 md:mt-[-200px] md:text-6xl font-bold"
+      >
         Chip Input{" "}
-      </h2>
+      </motion.h2>
 
-      <div className="bg-[#1c1d20] flex-grow md:flex-grow-0 w-full h-full md:w-[60vw]  mt-6 rounded-xl p-6 overflow-y-auto">
-        <form onSubmit={handleAdd} className="relative">
+      <div className="bg-[#1c1d20] flex-grow md:flex-grow-0 w-full h-full md:w-[60vw]  mt-2 rounded-xl p-6 overflow-y-auto">
+        <motion.form
+          initial={{ y: 20, opacity: 0, rotateX: -90 }}
+          animate={{ y: 0, opacity: 1, rotateX: 0 }}
+          exit={{ y: -20, opacity: 0, rotateX: 90 }}
+          transition={{delay:0.3, duration: 0.4, ease: "easeInOut" }}
+          onSubmit={handleAdd}
+          className="relative"
+        >
           <input
             type="text"
             placeholder="Write Your chipText"
@@ -90,18 +103,22 @@ const Chip_component = () => {
           />
           <button
             type="submit"
-            className="absolute right-0 top-0 h-[95%] w-20 rounded-full bg-[#00ffc4] text-black hover:bg-[#00ffc386] transition"
+            className="absolute right-0 top-0 h-[95%] w-20 font-semibold rounded-full bg-[#00ffc4] text-black hover:bg-[#00ffc386] transition"
           >
-           {loadingAdd ? (<LoadingCirlce/>) : ("ADD")}  
+            {loadingAdd ? <LoadingCirlce /> : "ADD"}
           </button>
-        </form>
+        </motion.form>
 
-        <ul className="mt-4 flex gap-2 scrollbar overflow-auto items-center">
+        <motion.ul
+        initial={{x:"120%"}}
+        animate={{x:0}}
+        transition={{delay:0.7,duration:0.7}}
+        className="mt-4 flex gap-2 scrollbar overflow-auto items-center">
           {allChips && allChips?.length > 0 ? (
             allChips?.map((chip) => (
               <li
                 key={chip.id}
-                className="flex items-center hover:bg-[#00ffc4]/5 justify-between border-2 border-[#00ffc4]/30 bg-transparent text-white rounded-full gap-1 px-2 pl-4  py-2 mt-2 cursor-pointer duration-300"
+                className="flex items-center hover:bg-[#00ffc4]/5 justify-between border-2 border-[#00ffc4]/30 bg-transparent text-white rounded-full gap-1 px-2 pl-4  py-2 mt-2 cursor-pointer "
               >
                 <div className="flex items-center gap-4 ">
                   {/* <input
@@ -130,7 +147,7 @@ const Chip_component = () => {
                   )}
                 </label> */}
                   <label
-                    className={`text-sm md:text-md capitalize lg:text-lg flex-grow cursor-pointer`}
+                    className={`text-sm md:text-md capitalize lg:text-lg  cursor-pointer`}
                   >
                     {chip?.chipText}
                   </label>
@@ -140,8 +157,11 @@ const Chip_component = () => {
                   onClick={() => handleDelete(chip._id)}
                   className="hover:scale-105 flex items-center cursor-pointer  transition text-[#4a4d57] hover:text-red-600 transition"
                 >
-                 
-               {loadingDeleteId === chip._id ? (<LoadingCirlce/>) : (<RxCross2 size={20} />)}   
+                  {loadingDeleteId === chip._id ? (
+                    <LoadingCirlce />
+                  ) : (
+                    <RxCross2 size={20} />
+                  )}
                   {/* <RxCrossCircled /> */}
                 </button>
               </li>
@@ -151,7 +171,7 @@ const Chip_component = () => {
               <LoadingDots />
             </li>
           )}
-        </ul>
+        </motion.ul>
       </div>
     </div>
   );
