@@ -103,7 +103,8 @@ const Chip_component = () => {
           />
           <button
             type="submit"
-            className="absolute right-0 top-0 h-[95%] w-20 font-semibold rounded-full bg-[#00ffc4] text-black hover:bg-[#00ffc386] transition"
+            className="absolute right-0 top-0 h-[95%] w-20 font-semibold rounded-full bg-gradient-to-r from-[#00ffc4] via-[#00aaff] to-[#00ffc4] 
+             bg-[length:200%_200%] animate-gradientMove text-black hover:bg-[#00ffc386] transition"
           >
             {loadingAdd ? <LoadingCirlce /> : "ADD"}
           </button>
@@ -118,7 +119,7 @@ const Chip_component = () => {
             allChips?.map((chip) => (
               <li
                 key={chip.id}
-                className="flex items-center hover:bg-[#00ffc4]/5 justify-between border-2 border-[#00ffc4]/30 bg-transparent text-white rounded-full gap-1 px-2 pl-4  py-2 mt-2 cursor-pointer "
+                className="flex items-center hover:bg-[#00ffc4]/5 justify-between border-2 border-[#00ffc4]/30 bg-transparent text-white rounded-full gap-1 px-2 pl-4  py-2 mt-2 cursor-pointer  "
               >
                 <div className="flex items-center gap-4 ">
                   {/* <input
