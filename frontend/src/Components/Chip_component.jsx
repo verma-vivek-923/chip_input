@@ -8,7 +8,7 @@ const Chip_component = () => {
   const [chipText, setChipText] = useState("");
   const [allChips, setAllChips] = useState([]);
   const [loadingAdd, setLoadingAdd] = useState("");
-  const [loadingDelete, setLoadingDelete] = useState("");
+  const [loadingDeleteId, setloadingDeleteIdId] = useState(null);
 
   useEffect(() => {
     const fetchAllChips = async () => {
@@ -49,7 +49,7 @@ const Chip_component = () => {
 
   const handleDelete = async (id) => {
     try {
-      setLoadingDelete(true);
+      setloadingDeleteIdId(id);
       const { data } = await axios.delete(
         `${import.meta.env.VITE_BACKEND_URL}/api/chips/delete/${id}`
       );
@@ -65,10 +65,10 @@ const Chip_component = () => {
     secondary: '#333',
   },
       });
-      setLoadingDelete(false);
+      setloadingDeleteIdId(null);
     } catch (error) {
       console.log(error);
-      setLoadingDelete(false);
+      setloadingDeleteIdId(null);
       toast.error("Something Went Wrong");
     }
   };
@@ -141,7 +141,7 @@ const Chip_component = () => {
                   className="hover:scale-105 flex items-center cursor-pointer  transition text-[#4a4d57] hover:text-red-600 transition"
                 >
                  
-               {loadingDelete ? (<LoadingCirlce/>) : (<RxCross2 size={20} />)}   
+               {loadingDeleteId === chip._id ? (<LoadingCirlce/>) : (<RxCross2 size={20} />)}   
                   {/* <RxCrossCircled /> */}
                 </button>
               </li>
