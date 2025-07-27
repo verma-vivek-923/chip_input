@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+
+.scrollbar {
+  scrollbar-width: none;      
+  -ms-overflow-style: none;   
+
+ 
+}
+.scrollbar::-webkit-scrollbar {
+  display: none;
+}
