@@ -79,7 +79,7 @@ const Chip_component = () => {
       <motion.h2
         initial={{ y: "-100%" }}
         animate={{ y: "0" }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.4 }}
         className="text-[#00ffc4] text-4xl mt-24 md:mt-[-200px] md:text-6xl font-bold"
       >
         Chip Input{" "}
@@ -90,7 +90,7 @@ const Chip_component = () => {
           initial={{ y: 20, opacity: 0, rotateX: -90 }}
           animate={{ y: 0, opacity: 1, rotateX: 0 }}
           exit={{ y: -20, opacity: 0, rotateX: 90 }}
-          transition={{delay:0.3, duration: 0.4, ease: "easeInOut" }}
+          transition={{delay:0.4, duration: 0.5, ease: "easeInOut" }}
           onSubmit={handleAdd}
           className="relative"
         >
@@ -113,7 +113,7 @@ const Chip_component = () => {
         <motion.ul
         initial={{x:"120%"}}
         animate={{x:0}}
-        transition={{delay:0.7,duration:0.7}}
+        transition={{delay:0.9,duration:0.9}}
         className="mt-4 flex gap-2 scrollbar overflow-auto items-center">
           {allChips && allChips?.length > 0 ? (
             allChips?.map((chip) => (
